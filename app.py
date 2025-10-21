@@ -1,6 +1,10 @@
-import streamlit as st
 import pickle
+import streamlit as st
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestRegressor
 
 # Load the trained pipeline
 with open("best_model.pkl", "rb") as f:
@@ -30,3 +34,4 @@ input_df = pd.DataFrame({
 if st.button("Predict"):
     prediction = pipeline.predict(input_df)
     st.success(f"Predicted Tip: ${prediction[0]:.2f}")
+
